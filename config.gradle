@@ -1,0 +1,9 @@
+ext {
+    compileSdkVersion = 25
+    buildToolsVersion = "25.0.3"
+    minSdkVersion = 15
+    targetSdkVersion = 25
+    versionCode = 1
+    versionName = "1.0"
+    dbflow_version = "4.1.2"
+}
