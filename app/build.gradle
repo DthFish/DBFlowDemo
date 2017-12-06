@@ -1,13 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
         applicationId "com.dthfish.dbflowdemo"
-        minSdkVersion 15
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
     }
     buildTypes {
         release {
@@ -18,7 +19,9 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:$dbflow_version"
+    implementation "com.github.Raizlabs.DBFlow:dbflow-core:$dbflow_version"
+    implementation "com.github.Raizlabs.DBFlow:dbflow:$dbflow_version"
+    implementation "com.android.support:appcompat-v7:26.1.0"
 }
