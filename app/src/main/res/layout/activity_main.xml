@@ -22,13 +22,25 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="update"
-        android:text="update"/>
+        android:onClick="update1"
+        android:text="update1"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="delete"
-        android:text="delete"/>
+        android:onClick="update2"
+        android:text="update2"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="delete1"
+        android:text="delete1"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="delete2"
+        android:text="delete2"/>
 
 </LinearLayout>

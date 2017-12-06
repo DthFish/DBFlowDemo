@@ -23,21 +23,29 @@ public class MainActivity extends AppCompatActivity {
         product.name = "P" + (System.currentTimeMillis() % 10000);
         product.save();
         L.d("Insert: " + product.toString());
-
-//        FlowManager.getModelAdapter(Product.class).insert(product);//如果 Product 没有继承 BaseModel 则采用这种方式
+        // 另一种插入
+        //FlowManager.getModelAdapter(Product.class).insert(product);//如果 Product 没有继承 BaseModel 则采用这种方式
+        // 又一种插入
+        /*
+        SQLite.insert(Product.class)
+                .columnValues(Product_Table.name.eq("P" + (System.currentTimeMillis() % 10000)))
+                .execute();
+        */
     }
 
     public void query(View view) {
         List<Product> products = SQLite.select()
                 .from(Product.class)
-                .where(Product_Table.name.isNotNull(), Product_Table.id.greaterThanOrEq(5L))
+                .where(Product_Table.name.isNotNull()/*, Product_Table.id.greaterThanOrEq(5L)*/)
                 .orderBy(Product_Table.id, true)
-                .limit(3)
+//                .limit(3)
                 .queryList();
         L.d("Query: " + products.toString());
+
     }
 
-    public void update(View view) {
+    public void update1(View view) {
+        // 第一种方式 先查后改
         Product product = SQLite.select()
                 .from(Product.class)
                 .querySingle();
@@ -46,9 +54,20 @@ public class MainActivity extends AppCompatActivity {
             product.name = "P0000";
             product.update();
         }
+
     }
 
-    public void delete(View view) {
+    public void update2(View view) {
+        L.d("Update: P0000 update to PXXXX");
+        // 第二种方式
+        SQLite.update(Product.class)
+                .set(Product_Table.name.eq("PXXXX"))
+                .where(Product_Table.name.eq("P0000"))
+                .execute();
+    }
+
+    public void delete1(View view) {
+        // 第一种方式 先查后删
         Product product = SQLite.select()
                 .from(Product.class)
                 .querySingle();
@@ -56,5 +75,15 @@ public class MainActivity extends AppCompatActivity {
             product.delete();
             L.d("Delete: " + product.name);
         }
+
+
+    }
+
+    public void delete2(View view) {
+        L.d("Delete: where name equals PXXXX");
+        // 第二种方式
+        SQLite.delete(Product.class)
+                .where(Product_Table.name.eq("PXXXX"))
+                .execute();
     }
 }
