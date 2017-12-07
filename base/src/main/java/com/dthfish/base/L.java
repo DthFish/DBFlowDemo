@@ -1,4 +1,4 @@
-package com.dthfish.dbflowdemo;
+package com.dthfish.base;
 
 import android.util.Log;
 

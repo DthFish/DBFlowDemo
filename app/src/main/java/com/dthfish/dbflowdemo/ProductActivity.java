@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.dthfish.base.L;
 import com.dthfish.dbflowdemo.database.Product;
 import com.dthfish.dbflowdemo.database.Product_Table;
 import com.raizlabs.android.dbflow.sql.language.SQLite;

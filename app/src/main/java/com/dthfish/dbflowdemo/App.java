@@ -2,7 +2,9 @@ package com.dthfish.dbflowdemo;
 
 import android.app.Application;
 
+import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowManager;
+import com.raizlabs.android.dbflow.config.ShipGeneratedDatabaseHolder;
 
 /**
  * Description ${Desc}
@@ -15,6 +17,9 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        FlowManager.init(this);
+        FlowConfig flowConfig = new FlowConfig.Builder(this)
+                .addDatabaseHolder(ShipGeneratedDatabaseHolder.class)
+                .build();
+        FlowManager.init(flowConfig);
     }
 }

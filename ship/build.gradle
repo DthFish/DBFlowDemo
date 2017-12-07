@@ -9,6 +9,14 @@ android {
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
 
+        android.compileOptions.sourceCompatibility 1.8
+        android.compileOptions.targetCompatibility 1.8
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ targetModuleName : 'Ship' ]
+            }
+        }
+
     }
 
     buildTypes {

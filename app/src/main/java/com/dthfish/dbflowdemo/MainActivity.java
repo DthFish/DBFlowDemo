@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.dthfish.ship.ShipActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -20,5 +22,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToCategory(View view) {
         startActivity(new Intent(this, CategoryActivity.class));
+    }
+
+    public void goToShip(View view) {
+        startActivity(new Intent(this, ShipActivity.class));
     }
 }

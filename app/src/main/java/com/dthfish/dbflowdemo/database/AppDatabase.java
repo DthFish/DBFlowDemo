@@ -2,7 +2,7 @@ package com.dthfish.dbflowdemo.database;
 
 import android.support.annotation.NonNull;
 
-import com.dthfish.dbflowdemo.L;
+import com.dthfish.base.L;
 import com.raizlabs.android.dbflow.annotation.Database;
 import com.raizlabs.android.dbflow.annotation.Migration;
 import com.raizlabs.android.dbflow.sql.SQLiteType;
