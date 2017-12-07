@@ -6,29 +6,22 @@ import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 /**
- * Description ${Desc}
- * Author DthFish
- * Date 2017/12/6.
+ * Description ${产品品类}
+ * Author zlz
+ * Date 2017/12/7.
  */
-
 @Table(database = AppDatabase.class)
-public class Product extends BaseModel {
+public class Category extends BaseModel {
     @PrimaryKey(autoincrement = true)
     public long id;
     @Column
     public String name;
-    @Column//(defaultValue = "10000")// 设置默认 100 块钱，即使忘了录入价格，我们卖出去也不吃亏
-    public long price = 10000L;// 分
-    @Column
-    public String manufacturer;
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "Category{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", price=" + price +
-                ", manufacturer='" + manufacturer + '\'' +
                 '}';
     }
 }
