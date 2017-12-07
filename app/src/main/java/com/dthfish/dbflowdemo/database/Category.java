@@ -7,7 +7,7 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 
 /**
  * Description ${产品品类}
- * Author zlz
+ * Author DthFish
  * Date 2017/12/7.
  */
 @Table(database = AppDatabase.class)
