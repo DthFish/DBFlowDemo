@@ -1,9 +1,13 @@
 package com.dthfish.dbflowdemo.database;
 
 import com.raizlabs.android.dbflow.annotation.Column;
+import com.raizlabs.android.dbflow.annotation.ForeignKey;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.BaseModel;
+
+import java.util.List;
 
 /**
  * Description ${Desc}
@@ -21,7 +25,18 @@ public class Product extends BaseModel {
     public long price = 10000L;// 分
     @Column
     public String manufacturer;
-
+    @ForeignKey(stubbedRelationship = true, saveForeignKeyModel = true, deleteForeignKeyModel = false)
+    public Category category;
+    public List<Product> present;
+    public List<Product> getPresent() {
+        if (present == null || present.isEmpty()) {
+            present = SQLite.select()
+                    .from(Product.class)
+                    .where(Product_Table.name.like("PX%"))
+                    .queryList();
+        }
+        return present;
+    }
     @Override
     public String toString() {
         return "Product{" +
@@ -29,6 +44,8 @@ public class Product extends BaseModel {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", manufacturer='" + manufacturer + '\'' +
+                ", category=" + category +
+                ", present=" + present +
                 '}';
     }
 }

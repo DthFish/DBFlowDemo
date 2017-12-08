@@ -41,4 +41,22 @@
         android:onClick="delete2"
         android:text="delete2"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="foreignKeyInsert"
+        android:text="foreign_Key_insert"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="foreignKeyQuery"
+        android:text="foreign_key_query"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="foreignKeyMulti"
+        android:text="foreign_key_multi"/>
+
 </LinearLayout>

@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import com.dthfish.base.L;
 import com.raizlabs.android.dbflow.annotation.Database;
 import com.raizlabs.android.dbflow.annotation.Migration;
+import com.raizlabs.android.dbflow.config.FlowManager;
 import com.raizlabs.android.dbflow.sql.SQLiteType;
 import com.raizlabs.android.dbflow.sql.migration.AlterTableMigration;
 import com.raizlabs.android.dbflow.sql.migration.BaseMigration;
@@ -18,7 +19,20 @@ import com.raizlabs.android.dbflow.structure.database.DatabaseWrapper;
  */
 @Database(version = AppDatabase.VERSION)
 public class AppDatabase {
-    public static final int VERSION = 4;
+    public static final int VERSION = 5;
+
+    @Migration(version = 5, database = AppDatabase.class)
+    public static class Migration5 extends AlterTableMigration<Product> {
+
+        public Migration5(Class<Product> table) {
+            super(table);
+        }
+
+        @Override
+        public void onPreMigrate() {
+            addForeignKeyColumn(SQLiteType.INTEGER, "category_id", FlowManager.getTableName(Category.class) +"(`id`) ");
+        }
+    }
 
     @Migration(version = 4, database = AppDatabase.class)
     public static class Migration4 extends UpdateTableMigration<Product> {

@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.dthfish.base.L;
+import com.dthfish.dbflowdemo.database.Category;
+import com.dthfish.dbflowdemo.database.Category_Table;
 import com.dthfish.dbflowdemo.database.Product;
 import com.dthfish.dbflowdemo.database.Product_Table;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
@@ -91,5 +93,46 @@ public class ProductActivity extends AppCompatActivity {
         SQLite.delete(Product.class)
                 .where(Product_Table.name.eq("PXXXX"))
                 .execute();
+    }
+
+    public void foreignKeyInsert(View view) {
+        Category category = SQLite.select()
+                .from(Category.class)
+                .where(Category_Table.name.eq("meat"))
+                .querySingle();
+        if (category == null) {
+            category = new Category();
+            category.name = "meat";
+        }
+        Product product = new Product();
+        product.name = "P" + (System.currentTimeMillis() % 10000);
+        product.category = category;
+        product.save();
+        L.d("Insert: " + product.toString());
+        mLastInsertId = product.id;
+    }
+
+    private long mLastInsertId;
+
+    public void foreignKeyQuery(View view) {
+        List<Product> products = SQLite.select()
+                .from(Product.class)
+                .where(Product_Table.id.eq(mLastInsertId))
+                .queryList();
+        for (Product product : products) {
+            product.category.load();
+        }
+        L.d("Query: " + products.toString());
+    }
+
+    public void foreignKeyMulti(View view) {
+        final Product product = SQLite.select()
+                .from(Product.class)
+                .where(Product_Table.name.notEq("PXXXX"))
+                .querySingle();
+
+        if (product != null) {
+            L.d("Query:"+product+"`s Present: " + product.getPresent());
+        }
     }
 }
