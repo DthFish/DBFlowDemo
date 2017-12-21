@@ -496,7 +496,7 @@ android {
 }
 ~~~
 编译，报错：
-![报错](.\报错1.png)
+![报错](pic\报错1.png)
 好吧再改！AndroidStudio 告诉了我们解决方案：
 ~~~java
 android {
