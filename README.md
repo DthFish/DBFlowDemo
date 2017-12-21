@@ -496,7 +496,7 @@ android {
 }
 ~~~
 编译，报错：
-![报错](pic\报错1.png)
+![报错](https://github.com/DthFish/DBFlowDemo/blob/master/pic/%E6%8A%A5%E9%94%991.png)
 好吧再改！AndroidStudio 告诉了我们解决方案：
 ~~~java
 android {
